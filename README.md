@@ -28,6 +28,33 @@ Os móveis, portas e janelas são modelos 3D feitos no Blender (pasta `modelos/`
 
 `Ctrl+Z` desfaz e `Ctrl+Y` refaz. A hora do dia no topo muda a luz do sol; à noite os candeeiros acendem.
 
+## Casas prontas
+
+Em **Casa → Casas prontas** escolhes uma casa para começar:
+
+| Casa | O que tem |
+|---|---|
+| Estúdio | T0 com cozinha aberta, cama, casa de banho e varanda |
+| Apartamento T1 | Quarto, sala com cozinha, casa de banho e varanda |
+| Moradia T2 | Dois quartos, sala, cozinha, casa de banho e esplanada |
+| Moradia T3 com piscina | Três quartos, escritório, cozinha com ilha, piscina e jardim |
+
+Cada uma abre **mobilada** (pronta a mostrar) ou **só com as paredes** (portas, janelas, chão e cores, mas sem móveis) para a mobilares tu. `Ctrl+Z` volta à casa que tinhas antes.
+
+## Móveis e acessórios
+
+Mais de 60 peças feitas no Blender, com várias cores e madeiras:
+
+- **Sala:** sofá, sofá de canto, poltrona, pufe, mesa de centro, móvel de TV, aparador, estante, lareira, tapete, candeeiro de pé
+- **Cozinha:** bancada, lava-loiça, placa e forno, armário de parede, frigorífico, máquina da loiça, ilha, bancos altos, mesa de jantar, mesa redonda, cadeiras
+- **Quarto:** cama de casal e de solteiro, beliche, berço, mesa de cabeceira, roupeiro, cómoda, toucador, secretária, cadeira de escritório
+- **Casa de banho:** sanita, lavatório, banheira, duche, máquina da roupa, toalheiro, armário com espelho
+- **Decoração:** quadro, espelho redondo, relógio de parede, cortinas, prateleira, vaso com flores, plantas e cato
+- **Luzes:** candeeiro de teto e interruptor
+- **Jardim:** árvore, arbusto, floreira, espreguiçadeira, mesa de jardim, guarda-sol, churrasqueira e piscina
+
+O que se pendura na parede (quadros, espelhos, cortinas…) encosta-se sozinho à parede mais próxima.
+
 ## Visitar a casa
 
 Na ferramenta **Passear** andas dentro da casa à altura dos olhos, como numa visita. Clica no ecrã para controlar a vista com o rato (`Esc` solta o rato; outro `Esc` sai).

@@ -31,7 +31,7 @@
     </div>
   </header>
   <div class="menu float" id="menu" hidden>
-    <button data-menu="example">Casa de exemplo<small>Abre a casa já mobilada</small></button>
+    <button data-menu="casas">Casas prontas<small>Mobiladas ou só com as paredes</small></button>
     <button data-menu="clear">Começar do zero<small>Terreno vazio. Podes desfazer.</small></button>
     <button data-menu="code">Código da casa<small>Guardar, partilhar ou abrir</small></button>
   </div>
@@ -48,6 +48,14 @@
   <div class="walkpad" id="walkpad" hidden>
     <span></span><button data-k="KeyW" aria-label="Andar para a frente">▲</button><span></span>
     <button data-k="TurnL" aria-label="Rodar para a esquerda">⟲</button><button data-k="KeyS" aria-label="Andar para trás">▼</button><button data-k="TurnR" aria-label="Rodar para a direita">⟳</button>
+  </div>
+  <div class="modal" id="casas" hidden>
+    <div class="sheet sheet-wide" role="dialog" aria-labelledby="casas-title">
+      <h2 id="casas-title">Casas prontas</h2>
+      <p>Escolhe uma casa para começar. "Mobilada" traz tudo pronto a mostrar; "Só as paredes" traz a casa vazia para a mobilares tu. Podes mudar tudo depois.</p>
+      <div class="casas" id="casas-list"></div>
+      <div class="actions"><button class="btn" id="casas-close">Fechar</button></div>
+    </div>
   </div>
   <div class="modal" id="modal" hidden>
     <div class="sheet" role="dialog" aria-labelledby="code-title">

@@ -13,7 +13,7 @@ Nomes de materiais que o site reconhece (casa.js → modelMat):
     Tecido:#hex      tecido      Madeira:carvalho|nogueira|freixo
     Lacado:#hex[:r]  lacado      Metal:#hex[:r]   metal
     Folha:#hex       folhas (duas faces)
-    Ceramica Cromado Preto Latao Ecra Espelho Vidro Marmore
+    Ceramica Cromado Preto Latao Ecra Espelho Vidro Marmore Agua
     Abajur:cor|#hex  abajur que acende à noite
 """
 import bpy, bmesh, math, os, random, sys
@@ -31,7 +31,7 @@ P = Matrix(((1, 0, 0), (0, 0, -1), (0, 1, 0)))  # site (x, y=cima, z=frente) -> 
 WOODHEX = {'carvalho': '#b98b5c', 'nogueira': '#6f4a30', 'freixo': '#d4b891'}
 FIXED = {'Ceramica': ('#f3f3f1', .12, 0), 'Cromado': ('#e3e5e8', .12, 1), 'Preto': ('#1e1f22', .45, 0),
          'Latao': ('#b8955a', .35, 1), 'Ecra': ('#06080b', .1, .4), 'Espelho': ('#f2f4f5', .02, 1),
-         'Vidro': ('#bcd6de', .03, 0), 'Marmore': ('#eeece7', .14, 0)}
+         'Vidro': ('#bcd6de', .03, 0), 'Marmore': ('#eeece7', .14, 0), 'Agua': ('#3d8fc4', .04, 0)}
 MATS = {}
 ITEM = {}
 
@@ -93,7 +93,7 @@ def mat(spec):
     b.inputs['Metallic'].default_value = metal
     if wood:
         wood_nodes(m, wood)
-    if t == 'Vidro':
+    if t in ('Vidro', 'Agua'):
         b.inputs['Transmission Weight'].default_value = 1
     if t in ('Folha', 'Abajur'):
         m.use_backface_culling = False
@@ -682,6 +682,344 @@ def interruptor():
     box(.086, .086, .012, 0, 1.02, -.009, C, .005, 3)
     box(.044, .052, .01, 0, 1.037, .001, C, .004, 3, rot=(.08, 0, 0))
     box(.008, .003, .002, 0, 1.072, .007, 'Lacado:#e07b2a:0.4', 0)
+
+
+# ---------------------------------------------------------------- mais móveis e acessórios
+@modelo('sofa_canto', '#bdb5a7', 'fab')
+def sofa_canto():
+    # sofá em L: costas atrás (-z), chaise do lado direito a vir para a frente (+z)
+    tapered_legs([(-1.25, -.85), (1.25, -.85), (-1.25, -.05), (.45, .85), (1.25, .85)], .12, L_NOG)
+    box(2.6, .2, .9, 0, .11, -.45, C, .04, 4)
+    box(.9, .2, .9, .85, .11, .45, C, .04, 4)
+    box(2.6, .5, .2, 0, .14, -.8, C, .06, 4)
+    box(.2, .44, .9, -1.2, .11, -.45, C, .08, 5)
+    for x in (-.73, -.02):
+        box(.7, .15, .62, x, .3, -.36, C, .06, 5, sm='smooth')
+    box(.86, .15, 1.5, .85, .3, .12, C, .06, 5, sm='smooth')
+    for x in (-.73, -.02, .85):
+        box(.68, .42, .17, x, .42, -.62, C, .07, 5, rot=(-.16, 0, 0), sm='smooth')
+    box(.4, .36, .12, -.85, .45, -.48, 'Tecido:#56654f', .055, 5, rot=(-.2, 0, .15), sm='smooth')
+    box(.4, .36, .12, .95, .45, -.48, 'Tecido:#e8e2d4', .055, 5, rot=(-.2, 0, -.15), sm='smooth')
+
+
+@modelo('aparador', 'nogueira', 'wood')
+def aparador():
+    for x in (-.72, .72):
+        for z in (-.17, .17):
+            cyl(.018, .012, .18, x, 0, z, 'Preto', 12)
+    box(1.6, .62, .42, 0, .18, 0, C, .01)
+    for x in (-.6, -.2, .2, .6):
+        box(.396, .6, .018, x, .19, .21, C, .004)
+        cyl(.006, .006, .12, x + (.16 if x < 0 else -.16), .42, .228, 'Latao', 8)
+    lathe([(0, 0), (.06, 0), (.09, .12), (.06, .3), (.04, .36), (.045, .38), (0, .38)], -.5, .8, 0, 'Ceramica')
+    box(.26, .04, .2, .1, .8, 0, 'Tecido:#2f4a6b', .004)
+    box(.24, .03, .18, .1, .84, .01, 'Tecido:#c9b28a', .004)
+    lathe([(0, 0), (.08, 0), (.14, .05), (.13, .06), (.07, .015), (0, .015)], .55, .8, 0, 'Lacado:#b5653f:0.5', 32)
+
+
+@modelo('lareira', '#eeece7', 'lacq')
+def lareira():
+    body = box(1.4, 1.1, .45, 0, 0, 0, 'Marmore', .01)
+    hole = box(.8, .62, .5, 0, .12, .1, 'Preto', .01)
+    cut(body, hole)
+    remove(hole)
+    box(.8, .62, .02, 0, .12, -.12, 'Lacado:#1b1b1d:0.9', 0)
+    box(.8, .02, .32, 0, .12, .02, 'Lacado:#1b1b1d:0.9', 0)
+    box(1.6, .06, .52, 0, 1.1, .02, 'Marmore', .01)
+    for x, a in ((-.12, .3), (.1, -.25), (0, 0)):
+        cyl(.045, .045, .5, x, -.04 + (.06 if a == 0 else 0), 0, 'Madeira:nogueira', 12, rot=(0, a, PI / 2))
+    lathe([(0, 0), (.14, 0), (.06, .2), (.02, .3), (0, .3)], 0, .16, 0, 'Abajur:#ff9a45', 16)
+    lathe([(0, 0), (.04, 0), (.06, .1), (.03, .22), (0, .22)], -.45, 1.16, 0, 'Ceramica')
+    box(.3, .4, .03, .35, 1.16, -.12, 'Preto', .006, rot=(-.08, 0, 0))
+    box(.26, .36, .006, .35, 1.18, -.103, 'Lacado:#c9b28a:0.8', 0, rot=(-.08, 0, 0))
+
+
+@modelo('pufe', '#9a5843', 'fab')
+def pufe():
+    lathe([(0, 0), (.21, 0), (.24, .04), (.25, .2), (.24, .38), (.2, .42), (0, .42)], 0, 0, 0, C, 40)
+
+
+@modelo('quadro', '#2d2e31', 'lacq')
+def quadro():
+    box(1.0, .7, .03, 0, 1.15, -.005, C, .004)
+    box(.92, .62, .01, 0, 1.19, .012, 'Lacado:#efe9dd:0.9', 0)
+    r = random.Random(21)
+    for i, col in enumerate(['#c27a35', '#2f4a6b', '#9a5843', '#56654f', '#e6cd8c']):
+        w, h = .15 + r.random() * .25, .12 + r.random() * .25
+        box(w, h, .004, -.3 + i * .15 + r.random() * .05, 1.24 + r.random() * .25, .018, 'Lacado:%s:0.9' % col, 0)
+
+
+@modelo('ilha', '#5b6f5c', 'kitchen')
+def ilha():
+    box(1.7, .1, .7, 0, 0, 0, 'Preto', 0)
+    box(1.74, .76, .74, 0, .1, 0, C, .004)
+    for x in (-.58, 0, .58):
+        box(.575, .73, .02, x, .115, .38, C, .004)
+        cyl(.007, .007, .2, x, .6, .4, 'Cromado', 12, rot=(0, 0, PI / 2))
+    box(1.8, .04, .9, 0, .86, 0, 'Marmore', .008)
+    lathe([(0, 0), (.07, 0), (.15, .065), (.145, .072), (.06, .022), (0, .022)], .5, .9, 0, 'Ceramica', 32)
+    for x, z in ((.47, .02), (.54, -.03), (.5, .06)):
+        sph(.036, x, .96, z, 'Lacado:#c0392b:0.4')
+
+
+@modelo('banco_alto', 'carvalho', 'wood')
+def banco_alto():
+    for a in range(4):
+        ang = a * PI / 2 + PI / 4
+        cyl(.012, .012, .66, math.sin(ang) * .14, 0, math.cos(ang) * .14, 'Preto', 10, rot=(math.cos(ang) * .08, 0, -math.sin(ang) * .08))
+    ring(.15, .008, 0, .25, 0, 'Preto', 32)
+    lathe([(0, 0), (.18, 0), (.185, .02), (.18, .045), (0, .05)], 0, .66, 0, C, 40, sm='auto')
+
+
+@modelo('mesa_redonda', 'carvalho', 'wood')
+def mesa_redonda():
+    lathe([(0, 0), (.55, 0), (.555, .015), (.55, .035), (0, .035)], 0, .72, 0, C, 64, sm='auto')
+    cyl(.05, .07, .7, 0, .02, 0, C, 24)
+    lathe([(0, 0), (.3, 0), (.28, .025), (.08, .04), (0, .04)], 0, 0, 0, 'Preto', 40)
+    lathe([(0, 0), (.04, 0), (.05, .05), (.03, .16), (.035, .18), (0, .18)], 0, .755, 0, 'Lacado:#b5653f:0.5')
+
+
+@modelo('maquina_loica', 'inox', 'appl')
+def maquina_loica():
+    box(.56, .1, .52, 0, 0, -.04, 'Preto', 0)
+    box(.6, .76, .58, 0, .1, -.02, 'Lacado:#e8e8e6:0.4', .003)
+    box(.596, .74, .02, 0, .11, .28, C, .006)
+    box(.5, .015, .02, 0, .76, .3, 'Cromado', .006)
+    box(.6, .04, .62, 0, .86, 0, 'Marmore', .006)
+
+
+@modelo('cama_solteiro', '#7f8b97', 'fab')
+def cama_solteiro():
+    tapered_legs([(-.45, -.92), (.45, -.92), (-.45, .98), (.45, .98)], .08, L_CAR, .025, .02)
+    box(.97, .25, 2.0, 0, .08, .02, L_CAR, .015)
+    box(1.0, .9, .08, 0, .1, -.99, L_CAR, .02)
+    box(.9, .2, 1.94, 0, .33, .04, 'Tecido:#f2efe8', .04, 4)
+    box(.97, .09, 1.46, 0, .51, .29, C, .045, 5, sm='smooth')
+    for x in (-.475, .475):
+        box(.03, .26, 1.44, x, .3, .29, C, .012, 3)
+    box(.97, .26, .03, 0, .3, 1.01, C, .012, 3)
+    box(.94, .1, .22, 0, .52, -.52, 'Tecido:#f2efe8', .045, 5, sm='smooth')
+    box(.62, .16, .4, 0, .53, -.76, 'Tecido:#f7f5f0', .075, 6, rot=(-.15, 0, 0), sm='smooth')
+
+
+@modelo('beliche', 'freixo', 'wood')
+def beliche():
+    for x in (-.47, .47):
+        for z in (-.98, .98):
+            box(.06, 1.75, .06, x, 0, z, C, .01)
+    for y in (.25, 1.15):
+        box(1.0, .14, 2.0, 0, y, 0, C, .01)
+        box(.88, .16, 1.9, 0, y + .14, 0, 'Tecido:#f2efe8', .035, 4)
+        box(.9, .07, 1.4, 0, y + .3, .25, 'Tecido:#7f8b97', .03, 4, sm='smooth')
+        box(.6, .12, .36, 0, y + .3, -.7, 'Tecido:#f7f5f0', .05, 5, sm='smooth')
+    for z in (-.98, .98):
+        box(1.0, .05, .03, 0, 1.5, z, C, .006)
+    box(.03, .06, 1.3, .47, 1.5, -.33, C, .006)
+    for y in (.45, .75, 1.05):
+        cyl(.014, .014, .3, .53, y, .6, C, 10, rot=(PI / 2, 0, 0))
+    for z in (.45, .75):
+        box(.04, 1.5, .04, .53, 0, z, C, .008)
+
+
+@modelo('comoda', 'carvalho', 'wood')
+def comoda():
+    for x in (-.45, .45):
+        for z in (-.2, .2):
+            cyl(.016, .012, .12, x, 0, z, 'Preto', 12)
+    box(1.0, .75, .48, 0, .12, 0, C, .008)
+    for i in range(4):
+        y = .14 + i * .18
+        box(.96, .165, .018, 0, y, .24, C, .004)
+        for x in (-.25, .25):
+            sph(.014, x, y + .085, .256, 'Latao')
+    box(.3, .02, .2, -.25, .87, 0, 'Lacado:#2f4a6b:0.6', .004)
+    lathe([(0, 0), (.05, 0), (.07, .08), (.04, .18), (0, .18)], .3, .87, 0, 'Ceramica')
+
+
+@modelo('berco', '#f1f0ec', 'wood')
+def berco():
+    for x in (-.33, .33):
+        for z in (-.63, .63):
+            box(.04, .9, .04, x, 0, z, C, .008)
+    box(.62, .12, 1.22, 0, .22, 0, 'Tecido:#f2efe8', .03, 4)
+    box(.66, .03, 1.26, 0, .2, 0, C, .006)
+    for z in (-.63, .63):
+        box(.66, .04, .03, 0, .86, z, C, .006)
+        for x in [-.27 + i * .06 for i in range(10)]:
+            box(.018, .5, .018, x, .36, z, C, .004)
+    for x in (-.33, .33):
+        box(.03, .04, 1.26, x, .86, 0, C, .006)
+        for z in [-.57 + i * .063 for i in range(19)]:
+            box(.018, .5, .018, x, .36, z, C, .004)
+    sph(.07, .1, .43, -.3, 'Tecido:#c9b28a', scale=(1, 1.1, .9))
+
+
+@modelo('toucador', 'freixo', 'wood')
+def toucador():
+    for x in (-.46, .46):
+        for z in (-.18, .18):
+            cyl(.016, .012, .72, x, 0, z, C, 12)
+    box(1.0, .14, .45, 0, .6, 0, C, .006)
+    box(.96, .1, .02, 0, .62, .23, C, .004)
+    sph(.012, 0, .67, .245, 'Latao')
+    cyl(.3, .3, .015, 0, 1.12, -.2, 'Espelho', 48, rot=(PI / 2.15, 0, 0))
+    ring(.3, .012, 0, 1.13, -.2, 'Latao', 64, rot=(PI / 2.15, 0, 0))
+    lathe([(0, 0), (.03, 0), (.035, .08), (.015, .1), (0, .1)], .32, .74, 0, 'Lacado:#d9aaa0:0.3')
+
+
+@modelo('duche', '#f3f3f1', 'appl')
+def duche():
+    box(.9, .05, .9, 0, 0, 0, 'Ceramica', .015)
+    cyl(.03, .03, .004, 0, .05, 0, 'Cromado', 16)
+    box(.9, 2.0, .01, 0, .05, .44, 'Vidro', 0)
+    box(.01, 2.0, .9, .44, .05, 0, 'Vidro', 0)
+    box(.9, .02, .02, 0, 2.04, .44, 'Cromado', .004)
+    box(.02, .02, .9, .44, 2.04, 0, 'Cromado', .004)
+    cyl(.011, .011, 1.1, -.4, .95, -.42, 'Cromado', 12)
+    cyl(.012, .012, .25, -.4, 2.03, -.3, 'Cromado', 12, rot=(PI / 2, 0, 0))
+    cyl(.1, .1, .012, -.4, 2.0, -.18, 'Cromado', 32)
+    box(.08, .05, .04, -.4, 1.05, -.42, 'Cromado', .01)
+
+
+@modelo('maquina_roupa', '#f1f0ec', 'appl')
+def maquina_roupa():
+    box(.6, .85, .6, 0, 0, 0, C, .02)
+    box(.6, .006, .58, 0, .74, .01, 'Preto', 0)
+    ring(.19, .025, 0, .4, .3, 'Lacado:#c9ccd0:0.3', 48, rot=(PI / 2, 0, 0))
+    cyl(.17, .17, .02, 0, .39, .3, 'Vidro', 48, rot=(PI / 2, 0, 0))
+    cyl(.03, .03, .02, .2, .76, .3, 'Cromado', 24, rot=(PI / 2, 0, 0))
+    box(.2, .05, .006, -.12, .76, .302, 'Preto', 0)
+
+
+@modelo('toalheiro', '#e3e5e8', 'appl')
+def toalheiro():
+    for x in (-.23, .23):
+        cyl(.012, .012, .9, x, .55, -.02, 'Cromado', 12)
+    for i in range(10):
+        cyl(.008, .008, .46, 0, .62 + i * .085 - .23, -.02, 'Cromado', 10, rot=(0, 0, PI / 2))
+    box(.4, .45, .012, 0, .8, .005, 'Tecido:#e8e2d4', .004)
+    box(.4, .08, .05, 0, 1.22, -.01, 'Tecido:#e8e2d4', .02, 3, sm='smooth')
+
+
+@modelo('armario_espelho', 'nogueira', 'wood')
+def armario_espelho():
+    box(.6, .7, .14, 0, 1.2, -.005, C, .006)
+    for x in (-.15, .15):
+        box(.295, .68, .01, x, 1.21, .068, 'Espelho', .004)
+    box(.6, .02, .14, 0, 1.18, -.005, 'Cromado', 0)
+
+
+@modelo('espelho_parede', '#b8955a', 'lacq')
+def espelho_parede():
+    cyl(.34, .34, .015, 0, 1.5, -.005, 'Espelho', 64, rot=(PI / 2, 0, 0))
+    ring(.35, .016, 0, 1.5075, 0, C, 64, rot=(PI / 2, 0, 0))
+
+
+@modelo('relogio', '#2d2e31', 'lacq')
+def relogio():
+    cyl(.2, .2, .03, 0, 1.9, -.01, 'Lacado:#f6f4ef:0.6', 48, rot=(PI / 2, 0, 0))
+    ring(.2, .015, 0, 1.915, .0, C, 48, rot=(PI / 2, 0, 0))
+    for i in range(12):
+        a = i * PI / 6
+        box(.008, .03 if i % 3 else .045, .004, math.sin(a) * .165, 1.915 + math.cos(a) * .165 - .015, .008, 'Preto', 0, rot=(0, 0, -a))
+    box(.012, .1, .004, .03, 1.9, .012, 'Preto', 0, rot=(0, 0, -1.0))
+    box(.008, .15, .004, -.05, 1.89, .015, 'Preto', 0, rot=(0, 0, .6))
+    cyl(.012, .012, .01, 0, 1.91, .016, 'Preto', 16, rot=(PI / 2, 0, 0))
+
+
+@modelo('cortinas', '#e8e2d4', 'fab')
+def cortinas():
+    cyl(.012, .012, 1.5, 0, 2.38 - .75, .02, 'Cromado', 12, rot=(0, 0, PI / 2))
+    for x in (-.76, .76):
+        sph(.022, x, 2.39, .02, 'Cromado')
+    for sx in (-1, 1):
+        for i in range(6):
+            cyl(.035, .035, 2.32, sx * (.66 - i * .055), .02, .02 + (i % 2) * .025, C, 10, scale=(1, 1, .7))
+
+
+@modelo('vaso_flores', '#2f4a6b', 'lacq')
+def vaso_flores():
+    lathe([(0, 0), (.1, 0), (.15, .15), (.12, .4), (.07, .5), (.08, .52), (0, .52)], 0, 0, 0, C, 40)
+    r = random.Random(13)
+    for i in range(9):
+        a, t, h = r.random() * 2 * PI, .15 + r.random() * .25, .5 + r.random() * .4
+        x, z = math.sin(a) * t * h * .6, math.cos(a) * t * h * .6
+        cyl(.004, .005, h, x * .5, .48, -z * .5, 'Folha:#56754a', 6, rot=(-t * math.cos(a) * .6, 0, -t * math.sin(a) * .6))
+        sph(.04, x, .48 + h, -z, 'Lacado:%s:0.6' % r.choice(['#f2efe8', '#e8b4b8', '#f3d36b']), scale=(1, .8, 1))
+
+
+@modelo('estante_parede', 'carvalho', 'wood')
+def estante_parede():
+    box(1.0, .03, .25, 0, 1.4, 0, C, .005)
+    r = random.Random(17)
+    x = -.45
+    while x < .05:
+        bw, bh = .025 + r.random() * .02, .17 + r.random() * .08
+        box(bw, bh, .17, x + bw / 2, 1.43, .02, 'Lacado:%s:0.7' % r.choice(['#7a2e2a', '#2f4a6b', '#c9b28a', '#3f5a46', '#d8d2c4']), .003, 2)
+        x += bw + .002
+    lathe([(0, 0), (.04, 0), (.05, .09), (0, .09)], .25, 1.43, 0, 'Lacado:#e9e6df:0.5')
+    for i in range(6):
+        leaf(.25, 1.52, 0, 'Folha:#4f7d3c', .13, .04, i * 2.4, .4, .7, 8)
+    lathe([(0, 0), (.035, 0), (.045, .06), (.03, .14), (0, .14)], .4, 1.43, 0, 'Ceramica')
+
+
+@modelo('mesa_jardim', 'nogueira', 'wood')
+def mesa_jardim():
+    lathe([(0, 0), (.5, 0), (.5, .03), (0, .03)], 0, .72, 0, C, 48, sm='auto')
+    cyl(.04, .05, .72, 0, 0, 0, 'Preto', 16)
+    lathe([(0, 0), (.25, 0), (.22, .03), (0, .03)], 0, 0, 0, 'Preto', 32)
+    for k in range(4):
+        a = k * PI / 2
+        x, z = math.sin(a) * .72, math.cos(a) * .72
+        g = 'Lacado:#3b3e45:0.6'
+        for sx in (-1, 1):
+            for sz in (-1, 1):
+                lx, lz = sx * .2, sz * .2
+                cyl(.012, .012, .43, x + lx * math.cos(a) + lz * math.sin(a), 0, z - lx * math.sin(a) + lz * math.cos(a), g, 8)
+        box(.46, .04, .44, x, .43, z, g, .01, rot=(0, a, 0))
+        box(.42, .06, .4, x, .47, z, 'Tecido:#e8e2d4', .025, 4, rot=(0, a, 0), sm='smooth')
+        bx, bz = math.sin(a) * .94, math.cos(a) * .94
+        box(.46, .4, .03, bx, .45, bz, g, .01, rot=(0, a, 0))
+
+
+@modelo('guarda_sol', '#e8e2d4', 'fab')
+def guarda_sol():
+    lathe([(0, 0), (.25, 0), (.25, .06), (.05, .1), (0, .1)], 0, 0, 0, 'Preto', 32)
+    cyl(.02, .02, 2.4, 0, .1, 0, 'Madeira:nogueira', 12)
+    lathe([(0, 0), (1.2, 0), (1.18, .03), (.05, .5), (0, .52)], 0, 1.95, 0, C, 8, sm='flat')
+    lathe([(0, 0), (.06, 0), (.04, .1), (0, .12)], 0, 2.45, 0, 'Madeira:nogueira', 12)
+
+
+@modelo('churrasqueira', '#a9573a', 'lacq')
+def churrasqueira():
+    base = box(1.0, .85, .6, 0, 0, 0, C, .01)
+    hole = box(.6, .4, .5, 0, .2, .2, 'Preto', .01)
+    cut(base, hole)
+    remove(hole)
+    box(1.04, .05, .64, 0, .85, 0, 'Lacado:#8f8a82:0.85', .01)
+    box(.7, .12, .4, 0, .9, -.04, 'Preto', .02)
+    for x in [-.32 + i * .04 for i in range(17)]:
+        box(.006, .006, .38, x, 1.02, -.04, 'Cromado', 0)
+    box(.5, .5, .3, 0, 1.02, -.22, 'Lacado:#8f8a82:0.85', .01)
+    box(.2, .4, .2, 0, 1.52, -.27, 'Lacado:#8f8a82:0.85', .01)
+    for i in range(5):
+        cyl(.04, .04, .5, -.2 + i * .1, .21 + (i % 2) * .08, .25, 'Madeira:nogueira', 10, rot=(PI / 2, 0, 0))
+
+
+@modelo('piscina', '#3d8fc4', 'lacq')
+def piscina():
+    # piscina à superfície: borda de pedra e água; 3 x 6 m
+    # água 3 x 6 m e borda de 0,3 m à volta (total 3,6 x 6,6 m)
+    for z in (-3.15, 3.15):
+        box(3.6, .08, .3, 0, 0, z, 'Lacado:#d8d2c4:0.8', .02)
+    for x in (-1.65, 1.65):
+        box(.3, .08, 6.0, x, 0, 0, 'Lacado:#d8d2c4:0.8', .02)
+    box(3.0, .02, 6.0, 0, .02, 0, 'Agua', 0)
+    box(2.98, .015, 5.98, 0, 0, 0, 'Lacado:#8fd0e6:0.6', 0)
+    for i in range(3):
+        box(.6, .02, .25, 1.0, .045 - i * .01, -2.6 + i * .25, 'Lacado:#f2f0ea:0.6', .01)
+    for sz in (-1, 1):
+        cyl(.018, .018, .7, 1.22, .08, -2.4 + sz * .25, 'Cromado', 12)
 
 
 # ---------------------------------------------------------------- portas e janelas

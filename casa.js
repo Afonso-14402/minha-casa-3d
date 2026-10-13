@@ -363,8 +363,41 @@ Object.assign(ITEMS,{
     C(g,0.003,0.003,0.4,0,2.3,0,BLK(),6);C(g,0.06,0.23,0.28,0,2.0,0,shadeMat(okHex(c)?c:'#efe6d2'),32,true).castShadow=false;}},
   interruptor:{n:'Interruptor',cat:'Luzes',w:0.1,d:0.03,cm:'lacq',sw:true,colors:[['#f4f3ef','Branco'],['#2d2e31','Preto']],build(g,m){B(g,0.086,0.086,0.012,0,1.02,-0.009,m);}},
 });
+/* mais móveis e acessórios (modelos do Blender; sem modelo, aparece uma caixa com as medidas) */
+const first=(list,v)=>[...list.filter(c=>c[0]===v),...list.filter(c=>c[0]!==v)];
+Object.assign(ITEMS,{
+  sofa_canto:{n:'Sofá de canto',cat:'Sala',w:2.6,d:1.8,h:0.8,cm:'fab',colors:first(FABRICS,'#bdb5a7')},
+  aparador:{n:'Aparador',cat:'Sala',w:1.6,d:0.45,h:0.8,cm:'wood',colors:first(WOODS,'nogueira')},
+  lareira:{n:'Lareira',cat:'Sala',w:1.6,d:0.55,h:1.16,cm:'lacq',colors:[['#eeece7','Mármore']]},
+  pufe:{n:'Pufe',cat:'Sala',w:0.5,d:0.5,h:0.42,cm:'fab',colors:first(FABRICS,'#9a5843')},
+  ilha:{n:'Ilha de cozinha',cat:'Cozinha',w:1.8,d:0.9,h:0.9,cm:'kitchen',colors:first(KITCH,'#5b6f5c')},
+  banco_alto:{n:'Banco alto',cat:'Cozinha',w:0.4,d:0.4,h:0.7,cm:'wood',colors:WOODS},
+  mesa_redonda:{n:'Mesa redonda',cat:'Cozinha',w:1.1,d:1.1,h:0.75,cm:'wood',colors:WOODS},
+  maquina_loica:{n:'Máquina da loiça',cat:'Cozinha',w:0.6,d:0.62,h:0.9,cm:'appl',colors:APPL},
+  cama_solteiro:{n:'Cama de solteiro',cat:'Quarto',w:1.0,d:2.05,h:0.6,cm:'fab',colors:first(BEDS,'#7f8b97')},
+  beliche:{n:'Beliche',cat:'Quarto',w:1.1,d:2.0,h:1.75,cm:'wood',colors:first(WOODS,'freixo')},
+  comoda:{n:'Cómoda',cat:'Quarto',w:1.0,d:0.5,h:0.87,cm:'wood',colors:WOODS},
+  berco:{n:'Berço',cat:'Quarto',w:0.7,d:1.3,h:0.9,cm:'wood',colors:first(WOODS,'#f1f0ec')},
+  toucador:{n:'Toucador',cat:'Quarto',w:1.0,d:0.45,h:0.75,cm:'wood',colors:first(WOODS,'freixo')},
+  duche:{n:'Duche',cat:'Casa de banho',w:0.9,d:0.9,h:2.05,cm:'appl',colors:WHITEONLY},
+  maquina_roupa:{n:'Máquina da roupa',cat:'Casa de banho',w:0.6,d:0.6,h:0.85,cm:'appl',colors:[['#f1f0ec','Branco'],['#2d2e31','Preto'],['inox','Inox']]},
+  toalheiro:{n:'Toalheiro',cat:'Casa de banho',w:0.5,d:0.08,h:0.9,y0:0.55,wall:true,cm:'appl',colors:[['#e3e5e8','Cromado']]},
+  armario_espelho:{n:'Armário com espelho',cat:'Casa de banho',w:0.6,d:0.14,h:0.7,y0:1.2,wall:true,cm:'wood',colors:first(WOODS,'nogueira')},
+  quadro:{n:'Quadro',cat:'Decoração',w:1.0,d:0.04,h:0.7,y0:1.15,wall:true,cm:'lacq',colors:[['#2d2e31','Preto'],['#f1f0ec','Branco'],['carvalho','Carvalho']]},
+  espelho_parede:{n:'Espelho redondo',cat:'Decoração',w:0.72,d:0.04,h:0.7,y0:1.15,wall:true,cm:'lacq',colors:[['#b8955a','Dourado'],['#2d2e31','Preto'],['carvalho','Carvalho']]},
+  relogio:{n:'Relógio de parede',cat:'Decoração',w:0.42,d:0.05,h:0.42,y0:1.7,wall:true,cm:'lacq',colors:[['#2d2e31','Preto'],['#f1f0ec','Branco'],['nogueira','Nogueira']]},
+  cortinas:{n:'Cortinas',cat:'Decoração',w:1.6,d:0.12,h:2.4,wall:true,cm:'fab',colors:[['#e8e2d4','Linho'],['#bdb5a7','Areia'],['#7f8b97','Azul-cinza'],['#56654f','Musgo'],['#9a5843','Tijolo']]},
+  estante_parede:{n:'Prateleira',cat:'Decoração',w:1.0,d:0.25,h:0.3,y0:1.4,wall:true,cm:'wood',colors:WOODS},
+  vaso_flores:{n:'Vaso com flores',cat:'Decoração',w:0.35,d:0.35,h:1.2,cm:'lacq',colors:[['#2f4a6b','Azul'],['#e9e6df','Branco'],['#b5653f','Terracota']]},
+  mesa_jardim:{n:'Mesa de jardim',cat:'Jardim',w:2.0,d:2.0,h:0.9,cm:'wood',colors:first(WOODS,'nogueira')},
+  guarda_sol:{n:'Guarda-sol',cat:'Jardim',w:2.4,d:2.4,h:2.5,hit:[0.3,0.3],cm:'fab',colors:[['#e8e2d4','Cru'],['#2f4a6b','Azul'],['#c27a35','Laranja'],['#56654f','Verde']]},
+  churrasqueira:{n:'Churrasqueira',cat:'Jardim',w:1.0,d:0.6,h:1.9,cm:'lacq',colors:[['#a9573a','Tijolo'],['#8f8a82','Cimento']]},
+  piscina:{n:'Piscina',cat:'Jardim',w:3.6,d:6.6,h:0.08,flat:true,cm:'lacq',colors:[['#3d8fc4','Azul']]},
+});
+for(const d of Object.values(ITEMS))if(!d.build)d.build=function(g,m){B(g,this.w,this.h||0.8,this.d,0,this.y0||0,0,m);};
 ITEMS.arvore.hit=[0.4,0.4];
 const NOBLOCK=new Set(['tapete','candeeiro_teto','interruptor','armario_parede']);
+const HUNG=new Set(['candeeiro_teto','interruptor','armario_parede']);
 const CATS=['Sala','Cozinha','Quarto','Casa de banho','Decoração','Luzes','Jardim'];
 function colorMat(def,v){
   if(v==='inox')return metal('#c9ccd0',0.3);
@@ -399,6 +432,7 @@ function modelMat(name,m,c){
     case 'Espelho':return MIRROR();
     case 'Vidro':return GLASS();
     case 'Marmore':return surfMat('marmore');
+    case 'Agua':return cm('agua',()=>std({color:lin('#3d8fc4'),roughness:0.04,metalness:0.1,transparent:true,opacity:0.85,envMapIntensity:1.3}));
     case 'Abajur':return shadeMat(a==='cor'?(okHex(c)?c:'#efe6d2'):a);
   }
   return m;
@@ -457,6 +491,81 @@ function exampleState(){
   I('poltrona',6.0,15.6,1,'#d9c9a9');I('poltrona',8.0,15.6,3,'#d9c9a9');I('mesa_centro',7.0,15.6,1,'freixo');
   return s;
 }
+/* ---------------- casas prontas ---------------- */
+function novaCasa(fn){
+  const s={v:1,walls:{},floors:{},items:[]};
+  const W=(x0,z0,x1,z1)=>{if(z0===z1)for(let x=Math.min(x0,x1);x<Math.max(x0,x1);x++)s.walls[`${x},${z0},h`]={t:'wall',a:WHITE,b:WHITE};else for(let z=Math.min(z0,z1);z<Math.max(z0,z1);z++)s.walls[`${x0},${z},v`]={t:'wall',a:WHITE,b:WHITE};};
+  const D=(k,st='carvalho')=>Object.assign(s.walls[k],{t:'door',s:st});
+  const Wi=(k,w='normal')=>Object.assign(s.walls[k],{t:'window',w,f:'branco'});
+  const F=(x0,z0,x1,z1,m)=>{for(let x=x0;x<x1;x++)for(let z=z0;z<z1;z++)s.floors[x+','+z]=m;};
+  const P=(cx,cz,m)=>paintRegion(s.walls,region(s.walls,cx,cz),m);
+  const I=(k,x,z,r=0,c)=>s.items.push({id:s.items.length+1,k,x,z,r,c:c||ITEMS[k].colors[0][0]});
+  fn({W,D,Wi,F,P,I,s});
+  // encostar às paredes os móveis que ficaram perto delas
+  const keep=state;state=s;for(const it of s.items)[it.x,it.z]=snapItem(ITEMS[it.k],it.r,it.x,it.z);state=keep;
+  return s;
+}
+const casaEstudio=()=>novaCasa(({W,D,Wi,F,P,I,s})=>{
+  W(7,7,13,7);W(7,12,13,12);W(7,7,7,12);W(13,7,13,12);W(11,7,11,9);W(11,9,13,9);
+  D('13,10,v','branca');D('12,9,h','branca');
+  Wi('8,12,h','alta');Wi('9,12,h','alta');Wi('7,9,v');Wi('12,7,h');
+  F(7,7,11,12,'freixo');F(11,9,13,12,'freixo');F(11,7,13,9,'mosaico');F(8,12,11,14,'deck');F(13,10,16,11,'calcada');
+  P(9,10,'c:#e3e7ea');P(12,8,'azulejo');for(let x=7;x<11;x++)s.walls[`${x},7,h`].b='azulejo';
+  [['bancada',7.5],['fogao',8.5],['lava_loica',9.5]].forEach(([k,x])=>I(k,x,7.38,0,'#f1f0ec'));I('frigorifico',10.45,7.41,0,'inox');
+  I('armario_parede',7.5,7.25,0,'#f1f0ec');I('armario_parede',8.5,7.25,0,'#f1f0ec');
+  I('mesa_redonda',8.6,8.9);I('cadeira',7.95,8.9,1,'nogueira');I('cadeira',9.25,8.9,3,'nogueira');
+  I('cama',8.1,10.85,1,'#e7e2d8');I('mesinha',7.27,9.75,1);
+  I('tapete',11.5,10.5,0);I('sofa',11.5,11.48,2);I('pufe',11.5,10.3,0);I('quadro',11.5,11.96,2);I('planta_alta',9.6,11.55);
+  I('duche',11.52,7.52,0);I('sanita',12.6,7.4,3);I('lavatorio',11.3,8.55,1,'nogueira');
+  I('candeeiro_teto',9,10);I('candeeiro_teto',11.5,10.6,0,'#3b3e45');I('interruptor',12.915,11.6,3);
+  I('espreguicadeira',9.5,13.1,1);I('vaso_flores',10.7,13.7);
+});
+const casaT1=()=>novaCasa(({W,D,Wi,F,P,I,s})=>{
+  W(6,6,14,6);W(6,13,14,13);W(6,6,6,13);W(14,6,14,13);W(6,10,10,10);W(10,6,10,10);W(10,9,12,9);W(12,6,12,9);
+  D('9,10,h');D('11,9,h','branca');D('14,11,v','nogueira');
+  Wi('6,7,v');Wi('9,6,h');Wi('11,6,h');Wi('13,6,h');Wi('6,11,v');Wi('11,13,h','alta');Wi('12,13,h','alta');
+  F(6,6,10,10,'carvalho');F(10,6,12,9,'mosaico');F(12,6,14,10,'mosaico');F(10,9,12,10,'freixo');F(6,10,14,13,'freixo');F(10,13,14,15,'deck');F(14,11,17,12,'calcada');
+  P(8,8,'c:#86a1b9');P(11,7,'azulejo');P(8,11,'c:#e3e7ea');for(let z=6;z<10;z++)s.walls[`14,${z},v`].a='azulejo';
+  I('cama',8,7.1,0,'#e7e2d8');I('mesinha',6.95,6.27);I('mesinha',9.05,6.27);I('roupeiro',6.37,9.0,1,'#f1f0ec');I('comoda',8.0,9.68,2);
+  I('candeeiro_teto',8,8.2);I('interruptor',8.75,9.915,2);
+  I('sanita',10.4,6.41,0);I('lavatorio',11.4,6.3,0,'nogueira');I('duche',11.5,8.0,0);I('toalheiro',10.04,7.8,1);
+  [['bancada',6.57],['fogao',7.57],['lava_loica',8.57]].forEach(([k,z])=>I(k,13.62,z,3,'#2f3b52'));I('maquina_loica',13.65,9.37,3,'inox');I('frigorifico',12.42,6.41,0,'inox');
+  I('armario_parede',13.8,6.57,3,'#2f3b52');I('armario_parede',13.8,7.57,3,'#2f3b52');
+  I('tapete',7.5,11.4,0,'#7f8b97');I('movel_tv',7.5,10.295,0,'carvalho');I('sofa',7.5,12.48,2,'#bdb5a7');I('mesa_centro',7.5,11.4,0);I('poltrona',9.45,11.4,3,'#56654f');
+  I('planta',6.4,10.45);I('quadro',7.5,12.96,2);
+  I('mesa_jantar',12,11.6,0);for(const x of[11.6,12.4]){I('cadeira',x,10.85,0,'nogueira');I('cadeira',x,12.35,2,'nogueira');}
+  I('cortinas',12,12.88,2);I('candeeiro_teto',7.5,11.4);I('candeeiro_teto',12,11.6,0,'#c9b28a');I('candeeiro_teto',13,8);I('interruptor',13.915,12.6,3);
+  I('mesa_jardim',12.2,14.05);I('planta',10.4,14.6);
+});
+const casaT3=()=>novaCasa(({W,D,Wi,F,P,I,s})=>{
+  W(4,4,16,4);W(4,13,16,13);W(4,4,4,13);W(16,4,16,13);W(8,4,8,8);W(8,8,11,8);W(11,4,11,13);W(12,4,12,13);W(12,8,16,8);W(12,10,16,10);
+  D('11,13,h','nogueira');D('11,11,v');D('11,6,v');D('12,6,v');D('12,9,v','branca');D('12,11,v');
+  Wi('6,4,h');Wi('4,6,v');Wi('9,4,h');['5,13,h','6,13,h','8,13,h','9,13,h'].forEach(k=>Wi(k,'alta'));Wi('15,4,h');Wi('16,6,v');Wi('16,9,v');Wi('14,13,h');Wi('16,11,v');
+  F(4,4,8,8,'mosaico');F(4,8,11,13,'carvalho');F(8,4,11,8,'nogueira');F(11,4,12,13,'freixo');F(12,4,16,8,'carvalho');F(12,8,16,10,'marmore');F(12,10,16,13,'carvalho');
+  F(4,13,11,15,'deck');F(11,13,12,20,'calcada');
+  P(6,10,'c:#e3e7ea');P(9,6,'c:#a7b59e');P(14,6,'c:#86a1b9');P(14,9,'azulejo');P(14,11,'c:#e6cd8c');for(let x=4;x<8;x++)s.walls[`${x},4,h`].b='azulejo';
+  [['bancada',4.57],['fogao',5.57],['lava_loica',6.57]].forEach(([k,x])=>I(k,x,4.38,0,'#f1f0ec'));I('frigorifico',7.45,4.41,0,'inox');
+  I('armario_parede',4.57,4.25,0,'#f1f0ec');I('armario_parede',5.57,4.25,0,'#f1f0ec');
+  I('ilha',6,6.6,0);for(const x of[5.4,6,6.6])I('banco_alto',x,7.45,2);
+  I('movel_tv',4.295,10.2,1,'nogueira');I('lareira',4.3,12.05,1);I('sofa_canto',7.6,10.4,3);I('tapete',5.9,10.2,1,'#c9bfae');I('mesa_centro',5.9,10.2,1);I('planta_alta',4.45,8.45);
+  I('mesa_jantar',9.7,10.2,1,'carvalho');for(const z of[9.8,10.6]){I('cadeira',8.85,z,1,'nogueira');I('cadeira',10.55,z,3,'nogueira');}
+  I('estante',10.755,12.4,3,'nogueira');I('quadro',9.5,8.04,0);I('cortinas',6,12.88,2);I('cortinas',9,12.88,2);
+  I('secretaria',9.5,4.37,0);I('cadeira_escritorio',9.5,5.1,2);I('estante_parede',8.04,6.0,1);
+  I('cama',14,5.1,0,'#e7e2d8');I('mesinha',12.95,4.27);I('mesinha',15.05,4.27);I('roupeiro',14.5,7.63,2,'#f1f0ec');I('comoda',15.68,6.4,3);
+  I('banheira',14.9,8.445,0);I('sanita',13.4,9.59,2);I('lavatorio',14.4,9.7,2,'nogueira');I('maquina_roupa',15.6,9.63,2);I('toalheiro',12.04,8.5,1);
+  I('beliche',15.2,11.07,0);I('comoda',13.3,12.68,2,'#f1f0ec');I('pufe',13.5,11.3,0,'#7f8b97');
+  I('candeeiro_teto',5.9,10.3);I('candeeiro_teto',9.7,10.2,0,'#c9b28a');I('candeeiro_teto',6,6.6,0,'#3b3e45');I('candeeiro_teto',9.5,6.2);
+  I('candeeiro_teto',14,6.2);I('candeeiro_teto',14,11.5);I('candeeiro_teto',11.5,8.5);I('interruptor',11.085,12.6,1);I('espelho_parede',11.96,7.5,3);
+  I('piscina',7.5,17.4,1);I('espreguicadeira',5.5,14.3,1);I('espreguicadeira',7.9,14.3,1);I('guarda_sol',10.0,14.1,0,'#2f4a6b');
+  I('churrasqueira',13.2,15.4,0);I('mesa_jardim',14.8,17.2);I('arvore',17.6,17.6);I('arvore',2.2,17.2,0,'#6f9a3c');I('arbusto',17.2,7);I('arbusto',17.2,10.2);I('arbusto',2.8,6.2);
+});
+const CASAS=[
+  {id:'estudio',n:'Estúdio',d:'T0 · cozinha aberta, cama, casa de banho e varanda',f:casaEstudio},
+  {id:'t1',n:'Apartamento T1',d:'Quarto, sala com cozinha, casa de banho e varanda',f:casaT1},
+  {id:'t2',n:'Moradia T2',d:'Dois quartos, sala, cozinha, casa de banho e esplanada',f:exampleState},
+  {id:'t3',n:'Moradia T3 com piscina',d:'Três quartos, escritório, cozinha com ilha, piscina e jardim',f:casaT3},
+];
+
 function sanitize(s){
   const okSurf=v=>typeof v==='string'&&(SURF[v]||/^c:#[0-9a-f]{6}$/i.test(v));
   const out={v:1,walls:{},floors:{},items:[]};
@@ -569,6 +678,8 @@ function makeItem(it,ghost){
     LAMPS.push({pl,i:def.light.i,it,mats});
   }
   if(ghost)g.traverse(o=>{if(o.isMesh)o.castShadow=false;});
+  // com as paredes baixas, o que está pendurado na parede ou no teto ficaria a flutuar
+  if(wallsCut&&!walk.on&&(def.wall||HUNG.has(it.k)))g.visible=false;
   return g;
 }
 function rebuildItems(){disposeGroup(gItems);for(const L of LAMPS)L.mats.forEach(m=>m.dispose());LAMPS.length=0;for(const it of state.items)if(ITEMS[it.k])gItems.add(makeItem(it,false));applyLamps();updateSel();}
@@ -648,8 +759,9 @@ const cellOf=(p,cl)=>{let x=Math.floor(p.x),z=Math.floor(p.z);if(cl){x=clamp(x,0
 function pickWall(e){setRay(e);const hits=ray.intersectObjects(gWalls.children,true);
   for(const h of hits){const u=h.object.userData;if(u.seg){let side=null;if(u.piece){const mi=h.face&&h.face.materialIndex;if(mi===4)side=u.plus;else if(mi===5)side=u.minus;}return{seg:u.seg,side};}return null;}return null;}
 function itemIdOf(o){while(o&&o!==gItems){if(o.userData.itemId!=null)return o.userData.itemId;o=o.parent;}return null;}
-function pickItem(e){setRay(e);const hits=ray.intersectObjects(gItems.children,true);return hits.length?itemIdOf(hits[0].object):null;}
-function pickAny(e){setRay(e);const hits=ray.intersectObjects([gWalls,gItems],true);
+const shown=o=>{while(o){if(!o.visible)return false;o=o.parent;}return true;};
+function pickItem(e){setRay(e);const hits=ray.intersectObjects(gItems.children,true).filter(h=>shown(h.object));return hits.length?itemIdOf(hits[0].object):null;}
+function pickAny(e){setRay(e);const hits=ray.intersectObjects([gWalls,gItems],true).filter(h=>shown(h.object));
   for(const h of hits){const id=itemIdOf(h.object);if(id!=null)return{item:id};if(h.object.userData.seg)return{seg:h.object.userData.seg};return null;}return null;}
 
 function snapItem(def,r,cx,cz){
@@ -803,7 +915,7 @@ function delSel(){if(sel==null)return;begin();state.items=state.items.filter(i=>
 const walk={on:false,yaw:0,pitch:-0.05,x:0,z:0,keys:{},saved:null};
 const FINE=matchMedia('(pointer: fine)').matches;
 const locked=()=>document.pointerLockElement===cv;
-function itemHit(i,pad){const d=ITEMS[i.k];if(!d||NOBLOCK.has(i.k))return null;const[w,dd]=d.hit||[d.w,d.d];return[(i.r%2?dd:w)/2+pad,(i.r%2?w:dd)/2+pad];}
+function itemHit(i,pad){const d=ITEMS[i.k];if(!d||d.wall||NOBLOCK.has(i.k))return null;const[w,dd]=d.hit||[d.w,d.d];return[(i.r%2?dd:w)/2+pad,(i.r%2?w:dd)/2+pad];}
 function blocked(x,z){
   for(const i of state.items){const h=itemHit(i,0.2);if(h&&Math.abs(x-i.x)<h[0]&&Math.abs(z-i.z)<h[1])return true;}
   const R=0.27+T/2;for(const k in state.walls){if(state.walls[k].t==='door'){const ds=DOORST[k];if(!ds||ds.open)continue;}const s=segInfo(k);let d;
@@ -816,14 +928,14 @@ function enterWalk(){
   if(best){sx=best[0];sz=best[1];}
   const dx=walk.saved.t.x-walk.saved.p.x,dz=walk.saved.t.z-walk.saved.p.z;
   walk.x=sx;walk.z=sz;walk.yaw=Math.atan2(-dx,-dz);walk.pitch=-0.05;walk.on=true;walk.keys={};
-  camera.fov=70;camera.updateProjectionMatrix();grid.visible=false;if(wallsCut)rebuildWalls();
+  camera.fov=70;camera.updateProjectionMatrix();grid.visible=false;if(wallsCut){rebuildWalls();rebuildItems();}
   const touch=matchMedia('(pointer: coarse)').matches;$('walkpad').hidden=$('actpad').hidden=!touch;app.classList.add('walking');
   $('cross').hidden=false;
 }
 function exitWalk(){
   walk.on=false;camera.fov=50;camera.updateProjectionMatrix();camera.position.copy(walk.saved.p);controls.target.copy(walk.saved.t);controls.enabled=true;controls.update();
   $('walkpad').hidden=$('actpad').hidden=$('cross').hidden=$('prompt').hidden=true;app.classList.remove('walking');
-  if(locked())document.exitPointerLock();if(wallsCut)rebuildWalls();
+  if(locked())document.exitPointerLock();if(wallsCut){rebuildWalls();rebuildItems();}
 }
 let bob=0;
 function walkStep(dt){
@@ -1013,7 +1125,7 @@ function setView(v){
   if(walk.on)return;controls.target.set(0,0,0);
   if(v==='top')camera.position.set(0.01,27,0.6);else if(v==='front')camera.position.set(0,4.5,20);else camera.position.set(12,14,17);controls.update();
 }
-function setCut(on){wallsCut=on;$('b-cut').setAttribute('aria-pressed',String(on));rebuildWalls();if(ui.tool==='wall')renderPanel();}
+function setCut(on){wallsCut=on;$('b-cut').setAttribute('aria-pressed',String(on));rebuildWalls();rebuildItems();if(ui.tool==='wall')renderPanel();}
 $('panel').addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,v=b.dataset.v;
   switch(a){
@@ -1050,10 +1162,21 @@ function closeMenu(){menu.hidden=true;$('b-menu').setAttribute('aria-expanded','
 window.addEventListener('pointerdown',e=>{if(!menu.hidden&&!menu.contains(e.target)&&!$('b-menu').contains(e.target))closeMenu();});
 $('b-menu').addEventListener('click',()=>{menu.hidden=!menu.hidden;$('b-menu').setAttribute('aria-expanded',String(!menu.hidden));});
 let toastT=0;function toast(t){const el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,2200);}
+function openCasas(){
+  $('casas-list').innerHTML=CASAS.map(c=>{const keep=state;state=c.f();const st=computeStats();state=keep;
+    return`<div class="casa"><img src="casas/${c.id}.jpg" alt="" loading="lazy"><div class="casa-t"><b>${c.n}</b><span>${c.d}</span><small>${st.area} m² interiores · ${st.rooms} divisões</small></div><div class="actions"><button class="btn primary" data-casa="${c.id}" data-mob="1">Mobilada</button><button class="btn" data-casa="${c.id}" data-mob="0">Só as paredes</button></div></div>`;}).join('');
+  $('casas').hidden=false;
+}
+$('casas').addEventListener('click',e=>{
+  if(e.target.id==='casas'||e.target.id==='casas-close'){$('casas').hidden=true;return;}
+  const b=e.target.closest('[data-casa]');if(!b)return;const c=CASAS.find(x=>x.id===b.dataset.casa),s=c.f();
+  if(b.dataset.mob==='0')s.items=[];
+  $('casas').hidden=true;loadState(s,c.n+(b.dataset.mob==='0'?' (só as paredes) aberta. Agora é só mobilar!':' aberta. Ctrl+Z volta à casa anterior.'));
+});
 function loadState(s,msg){cancelAct();begin();state=s;sel=null;rebuildAll();end();if(msg)toast(msg);}
 menu.addEventListener('click',e=>{
   const b=e.target.closest('[data-menu]');if(!b)return;closeMenu();const m=b.dataset.menu;
-  if(m==='example')loadState(exampleState(),'Casa de exemplo aberta');
+  if(m==='casas')openCasas();
   else if(m==='clear')loadState({v:1,walls:{},floors:{},items:[]},'Terreno vazio. Ctrl+Z traz a casa de volta.');
   else if(m==='code'){$('code').value=JSON.stringify(state);$('modal').hidden=false;$('code').focus();$('code').select();}
 });
@@ -1068,7 +1191,7 @@ $('code-load').addEventListener('click',()=>{
 
 /* teclado */
 window.addEventListener('keydown',e=>{
-  if(e.code==='Escape'&&!$('modal').hidden){$('modal').hidden=true;return;}
+  if(e.code==='Escape'&&(!$('modal').hidden||!$('casas').hidden)){$('modal').hidden=$('casas').hidden=true;return;}
   const tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;
   if((e.ctrlKey||e.metaKey)&&e.code==='KeyZ'){e.preventDefault();e.shiftKey?redo():undo();return;}
   if((e.ctrlKey||e.metaKey)&&e.code==='KeyY'){e.preventDefault();redo();return;}
