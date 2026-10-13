@@ -21,12 +21,31 @@ Os móveis, portas e janelas são modelos 3D feitos no Blender (pasta `modelos/`
 | 4 | Janelas | Janela normal ou envidraçado até ao chão |
 | 5 | Chão | Madeiras, mosaico, mármore, deck, calçada, relva… |
 | 6 | Pintar | Tintas e revestimentos (azulejo, tijolo, pedra, lambrim) |
-| 7 | Móveis | Sala, cozinha, quarto, casa de banho, decoração e jardim |
+| 7 | Móveis | Sala, cozinha, quarto, casa de banho, decoração, luzes e jardim |
 | 8 | Mover | Arrastar, rodar (`R`), duplicar e apagar (`Delete`) |
 | 9 | Apagar | Clicar ou arrastar por cima do que queres tirar |
-| 0 | Passear | `W A S D` / setas para andar, arrastar para olhar, `Shift` corre, `Esc` sai |
+| 0 | Passear | Andar dentro da casa em primeira pessoa e jogar a missão (ver abaixo) |
 
 `Ctrl+Z` desfaz e `Ctrl+Y` refaz. A hora do dia no topo muda a luz do sol; à noite os candeeiros acendem.
+
+## Passear e jogar
+
+Clica no ecrã para controlar a vista com o rato (`Esc` solta o rato; outro `Esc` sai).
+
+| Tecla | O que faz |
+|---|---|
+| `W A S D` / setas | Andar |
+| `E` ou clique | Abrir e fechar portas, acender e apagar candeeiros, carregar nos interruptores |
+| `Espaço` | Saltar |
+| `C` | Agachar |
+| `Shift` | Correr |
+| `M` | Começar a missão |
+
+No telemóvel há setas para andar e botões **Usar** e **Saltar**; arrasta no ecrã para olhar.
+
+- **Portas:** abrem e fecham com animação; fechadas não deixam passar. Os móveis também não se atravessam.
+- **Luzes:** os interruptores acendem e apagam todos os candeeiros da divisão; cada candeeiro também se acende sozinho. Nota-se melhor à noite (hora do dia no topo).
+- **Missão:** aparecem moedas espalhadas pela casa; apanha-as todas o mais depressa possível. Se houver portas, uma fica trancada e a chave está algures do teu lado da casa. O melhor tempo fica guardado.
 
 ## Guardar e partilhar
 

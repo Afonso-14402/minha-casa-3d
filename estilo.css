@@ -101,6 +101,17 @@ kbd.k{font:500 11px var(--f-mono);padding:1px 6px;border:1px solid var(--line);b
 .dims{margin:-10px 0 0;font:400 12px var(--f-mono);color:var(--muted)}
 
 /* dicas, medidas, avisos */
+.cross{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.45);pointer-events:none;z-index:3}
+.cross.on{width:12px;height:12px;margin:-6px 0 0 -6px;background:none;border:2px solid #fff}
+.prompt{position:absolute;left:50%;top:calc(50% + 24px);transform:translateX(-50%);padding:6px 13px;border-radius:999px;font-size:13px;font-weight:500;pointer-events:none;white-space:nowrap;z-index:3}
+.hud{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 62px);transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:5px 6px 5px 14px;border-radius:999px;font-size:13px;z-index:4;white-space:nowrap}
+.hud b{font:600 15px var(--f-mono)}
+.hud .mono{font:500 13px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.hud .btn{padding:6px 14px;border-radius:999px}
+.hud .btn:first-child{margin-left:-8px}
+.actpad{position:absolute;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 96px);display:flex;flex-direction:column;gap:8px;z-index:3}
+.actpad button{width:76px;height:54px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:600 13px var(--f-body);cursor:pointer;touch-action:none}
+.actpad button:active{background:var(--accent);color:var(--accent-ink)}
 .hint{position:absolute;left:92px;right:332px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;justify-content:center;pointer-events:none}
 .hint span{padding:8px 14px;border-radius:999px;font-size:12.5px;color:var(--fg);text-align:center}
 .measure{position:absolute;left:0;top:0;transform:translate(-50%,-150%);padding:4px 9px;border-radius:7px;background:var(--accent);color:var(--accent-ink);font:500 12px var(--f-mono);pointer-events:none;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -130,6 +141,9 @@ kbd.k{font:500 11px var(--f-mono);padding:1px 6px;border:1px solid var(--line);b
   .walkpad{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
   .walking .panel{display:none}
   .walking .walkpad{bottom:calc(env(safe-area-inset-bottom,0px) + 90px)}
+  .actpad{right:8px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px)}
+  .hud{top:calc(env(safe-area-inset-top,0px) + 108px);bottom:auto;max-width:calc(100% - 16px);gap:8px;font-size:12px}
+  .walking .toast{top:calc(env(safe-area-inset-top,0px) + 156px)}
   .lbl-hide{display:none}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
