@@ -666,6 +666,43 @@ def espreguicadeira():
     box(.3, .1, .18, 0, .72, -.82, 'Tecido:#7f8b97', .04, 4, rot=(.75, 0, 0), sm='smooth')
 
 
+# ---------------------------------------------------------------- luzes e jogo
+@modelo('candeeiro_teto', '#efe6d2', 'fab')
+def candeeiro_teto():
+    cyl(.07, .07, .02, 0, 2.68, 0, 'Preto', 32, bev=.004)
+    cyl(.003, .003, .38, 0, 2.3, 0, 'Preto', 6)
+    cyl(.018, .022, .06, 0, 2.25, 0, 'Latao', 16)
+    sph(.045, 0, 2.2, 0, 'Lacado:#fff6e6:0.2')
+    lathe([(.02, .3), (.06, .29), (.14, .24), (.2, .14), (.23, .05), (.235, 0)], 0, 2.0, 0, 'Abajur:cor', 48)
+    ring(.235, .004, 0, 2.0, 0, 'Latao', 48)
+
+
+@modelo('interruptor', '#f4f3ef', 'lacq')
+def interruptor():
+    box(.086, .086, .012, 0, 1.02, -.009, C, .005, 3)
+    box(.044, .052, .01, 0, 1.037, .001, C, .004, 3, rot=(.08, 0, 0))
+    box(.008, .003, .002, 0, 1.072, .007, 'Lacado:#e07b2a:0.4', 0)
+
+
+@modelo('moeda', '#e0b13a', 'lacq')
+def moeda():
+    gold = 'Metal:#e6b83f:0.25'
+    cyl(.1, .1, .016, 0, -.008, 0, gold, 40, rot=(PI / 2, 0, 0), bev=.004)
+    for z in (-.009, .009):
+        ring(.085, .005, 0, 0, z, gold, 40, rot=(PI / 2, 0, 0))
+        box(.05, .05, .006, 0, -.025, z, gold, .006, 2, rot=(0, 0, PI / 4))
+
+
+@modelo('chave', '#d4a93c', 'lacq')
+def chave():
+    m = 'Metal:#d9ad45:0.3'
+    ring(.045, .012, -.09, 0, 0, m, 32, rot=(PI / 2, 0, 0))
+    cyl(.012, .012, .2, .03, -.1, 0, m, 16, rot=(0, 0, PI / 2))
+    for x, h in ((.1, .05), (.075, .035), (.055, .045)):
+        box(.016, h, .012, x, -h, 0, m, .003)
+    sph(.016, -.045, 0, 0, m)
+
+
 # ---------------------------------------------------------------- portas e janelas
 # Em coordenadas do troço de parede: x de 0 a 1 ao longo da parede, z = espessura (T = 0.14).
 T = .14
