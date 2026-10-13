@@ -24,28 +24,21 @@ Os móveis, portas e janelas são modelos 3D feitos no Blender (pasta `modelos/`
 | 7 | Móveis | Sala, cozinha, quarto, casa de banho, decoração, luzes e jardim |
 | 8 | Mover | Arrastar, rodar (`R`), duplicar e apagar (`Delete`) |
 | 9 | Apagar | Clicar ou arrastar por cima do que queres tirar |
-| 0 | Passear | Andar dentro da casa em primeira pessoa e jogar a missão (ver abaixo) |
+| 0 | Passear | Visitar a casa por dentro, à altura dos olhos (ver abaixo) |
 
 `Ctrl+Z` desfaz e `Ctrl+Y` refaz. A hora do dia no topo muda a luz do sol; à noite os candeeiros acendem.
 
-## Passear e jogar
+## Visitar a casa
 
-Clica no ecrã para controlar a vista com o rato (`Esc` solta o rato; outro `Esc` sai).
+Na ferramenta **Passear** andas dentro da casa à altura dos olhos, como numa visita. Clica no ecrã para controlar a vista com o rato (`Esc` solta o rato; outro `Esc` sai).
 
 | Tecla | O que faz |
 |---|---|
 | `W A S D` / setas | Andar |
 | `E` ou clique | Abrir e fechar portas, acender e apagar candeeiros, carregar nos interruptores |
-| `Espaço` | Saltar |
-| `C` | Agachar |
-| `Shift` | Correr |
-| `M` | Começar a missão |
+| `Shift` | Andar depressa |
 
-No telemóvel há setas para andar e botões **Usar** e **Saltar**; arrasta no ecrã para olhar.
-
-- **Portas:** abrem e fecham com animação; fechadas não deixam passar. Os móveis também não se atravessam.
-- **Luzes:** os interruptores acendem e apagam todos os candeeiros da divisão; cada candeeiro também se acende sozinho. Nota-se melhor à noite (hora do dia no topo).
-- **Missão:** aparecem moedas espalhadas pela casa; apanha-as todas o mais depressa possível. Se houver portas, uma fica trancada e a chave está algures do teu lado da casa. O melhor tempo fica guardado.
+No telemóvel há setas para andar e o botão **Usar**; arrasta no ecrã para olhar. As portas fechadas e os móveis não se atravessam. Os interruptores acendem e apagam os candeeiros da divisão; muda a hora do dia no topo para mostrar a casa de manhã, ao pôr do sol ou à noite.
 
 ## Guardar e partilhar
 
